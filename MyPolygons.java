@@ -1,27 +1,15 @@
 public class MyPolygons{
-	
-	// the one with no object being passed through (everything is just null) UNCOMMENT LATER
-	/*
-	public MyPolygons(){
-		Node head = new Node(null);
-		Node tail = new Node(null);
-		Node current = new Node(null);
-		int length = 0;
-	}
-	*/
-
 	// the one with an object of polygon being passed through
-	public MyPolygons(){
-		polygon polygonObject1 = new polygon();
-		Node head = new Node(polygonObject1);
+	public MyPolygons(polygon d){
+		Node head = new Node(d);
 		Node tail = head;
 		Node current = tail;
 		int length = 1;
 	}
 
-	public void prepend(){		// add to head
+	public void prepend(polygon d){		// add to head
 		// • prepend items into the start of the list (current item is the new first in list)
-		Node tempNode = new Node(polygon polygonData);
+		Node tempNode = new Node(d);
 		if(head == null){
 			tempNode.setNext(tempNode);
 			tempNode.setPrev(tempNode);
@@ -37,8 +25,8 @@ public class MyPolygons{
 		length++;
 	}
 
-	public void append(){			// add to tail
-		Node tempNode = new Node(polygon polygonData);
+	public void append(polygon d){			// add to tail
+		Node tempNode = new Node(d);
 		if(tail == null){
 			tempNode.setNext(tempNode);
 			tempNode.setPrev(tempNode);
@@ -60,14 +48,29 @@ public class MyPolygons{
 
 	public void next(){
 		// • step to the next item (making it the current item)
+		// COMMENT THIS OUT WHEN YOURE DONE
+		current = current.getNext();
 	}
 
 	public void reset(){
 		// • reset the current item variable to the start of your list
 	}
 
-	public void removeFromHead(){
+	public void removeFromHead(){			// https://www.javatpoint.com/deletion-in-circular-doubly-linked-list-at-beginning
 		// • take (then remove) an item from the head of the list
+		if(head == null){
+			return;
+		}else if(length == 1){
+			head = null;
+			tail = null;
+			current = null;
+			length--;
+		}else{
+			Node tempNode = head;
+			head = tempNode.getPrevious();
+			tempNode = null;
+			length--;
+		}
 	}
 
 	public Node getCurrent(){
@@ -76,10 +79,6 @@ public class MyPolygons{
 
 	public Node getHead(){
 		return head;
-	}
-
-	public void setCurrent(Node newC){
-		current = newC;
 	}
 }
 
