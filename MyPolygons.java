@@ -1,20 +1,57 @@
 public class MyPolygons{
 	
-	Node head = new Node(null, null, null);
-	Node tail = new Node(null, null, null);
-	Node current = new Node(null, null, null);
-
+	// the one with no object being passed through (everything is just null) UNCOMMENT LATER
+	/*
 	public MyPolygons(){
-		head = Node(polygonObject1);
+		Node head = new Node(null);
+		Node tail = new Node(null);
+		Node current = new Node(null);
+		int length = 0;
+	}
+	*/
+
+	// the one with an object of polygon being passed through
+	public MyPolygons(){
+		polygon polygonObject1 = new polygon();
+		Node head = new Node(polygonObject1);
+		Node tail = head;
+		Node current = tail;
+		int length = 1;
 	}
 
-	public void prepend(){
+	public void prepend(){		// add to head
 		// • prepend items into the start of the list (current item is the new first in list)
-		current = head;
+		Node tempNode = new Node(polygon polygonData);
+		if(head == null){
+			tempNode.setNext(tempNode);
+			tempNode.setPrev(tempNode);
+			head = tempNode;
+			tail = head;
+		}else{
+            tempNode.setPrev(head);
+            head.setNext(tempNode);
+            tail.setPrev(tempNode);
+            tempNode.setNext(tail);
+            head = tempNode;
+		}
+		length++;
 	}
 
-	public void append(){
-		// • append items into the end of the list (current item is the first in list)
+	public void append(){			// add to tail
+		Node tempNode = new Node(polygon polygonData);
+		if(tail == null){
+			tempNode.setNext(tempNode);
+			tempNode.setPrev(tempNode);
+			head = tempNode;
+			tail = head;
+		}else{
+			tempNode.setPrev(head);
+            head.setNext(tempNode);
+            tail.setPrev(tempNode);
+            tempNode.setNext(tail);
+            tail = tempNode;
+		}
+		length++;
 	}
 
 	public void insert(){
@@ -31,6 +68,18 @@ public class MyPolygons{
 
 	public void removeFromHead(){
 		// • take (then remove) an item from the head of the list
+	}
+
+	public Node getCurrent(){
+		return current;
+	}
+
+	public Node getHead(){
+		return head;
+	}
+
+	public void setCurrent(Node newC){
+		current = newC;
 	}
 }
 

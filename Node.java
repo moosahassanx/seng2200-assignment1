@@ -4,8 +4,8 @@ public class Node{
 
 	public Node(polygon d, Node initialNext, Node initialPrevious){
 		data = d;
-		next = initialNext;
-		previous = initialPrevious;
+		next = null;
+		previous = null;
 	}
 
 	public void setData(polygon d){

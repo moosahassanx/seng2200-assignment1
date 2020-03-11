@@ -1,8 +1,10 @@
 public class polygon{
 	private String polygonStatement;
 	private double area;
+	//private point[] pointArray = new point[numOfPoints];
 
 	public polygon(){
+		//pointArray[0];
 
 		point pointObject1 = new point(3, 4);
 		point pointObject2 = new point(-2, 1);
@@ -12,18 +14,29 @@ public class polygon{
 		point pointObject6 = new point(-23, 44);
  
 		// System.out.print(pointObject1.toString());
-		System.out.print(pointObject2.toString());
-		System.out.print(pointObject3.toString());
-		System.out.print(pointObject4.toString());
-		System.out.print(pointObject5.toString());
-		System.out.print(pointObject6.toString());
+		System.out.println("pointObject2.toString(): " + pointObject2.toString());
+		System.out.println("pointObject3.toString(): " + pointObject3.toString());
+		System.out.println("pointObject4.toString(): " + pointObject4.toString());
+		System.out.println("pointObject5.toString(): " + pointObject5.toString());
+		System.out.println("pointObject6.toString(): " + pointObject6.toString());
 		System.out.println();
 
-		System.out.println(pointObject1.distanceFromOrigin());
+		System.out.println("pointObject1.distanceFromOrigin(): " + pointObject1.distanceFromOrigin());
+		System.out.println();
 	}
 
 	
 	public String toString(){
+		/*
+		int counter = 0;
+		while(counter != numOfPoints()){
+			String tempLine = point[counter].toString();
+			counter++;
+		}
+		return polygonStatement = "[" + tempLine + "]: " + calculateArea();
+		*/
+
+		// FOR TESTING PURPOSES (NOT FINAL)
 		return polygonStatement = "[" + "NEED TO ADD pointObject.toString() here" + "]: " + calculateArea();
 	}
 	

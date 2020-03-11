@@ -4,17 +4,20 @@ import java.util.Scanner;
 class main{
 	public static void main(String[] args) throws IOException{
 		Scanner input = new Scanner(System.in);
+		polygon polygonTestObject = new polygon();
+		MyPolygons myPolygonsObject = new MyPolygons();
+		System.out.println(polygonTestObject.toString());
 		
 		// ------------------------------------------------------------------------------------------------------
 		Scanner file = new Scanner(new File("inputfile.txt"));
 
-		String char1 = file.nextLine();
-		String char2 = file.nextLine();
-		String char3 = file.nextLine();
+		String line1 = file.nextLine();
+		String line2 = file.nextLine();
+		String line3 = file.nextLine();
 
-		System.out.println(char1);
-		System.out.println(char2);
-		System.out.println(char3);
+		System.out.println(line1);
+		System.out.println(line2);
+		System.out.println(line3);
 
 		file.close();
 		// ------------------------------------------------------------------------------------------------------
