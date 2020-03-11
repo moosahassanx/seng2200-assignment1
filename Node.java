@@ -2,7 +2,7 @@ public class Node{
 	private polygon data;
 	private Node next, previous;
 
-	public Node(polygon d, Node initialNext, Node initialPrevious){
+	public Node(polygon d){
 		data = d;
 		next = null;
 		previous = null;
