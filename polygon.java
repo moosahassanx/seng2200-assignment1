@@ -1,7 +1,7 @@
 public class polygon{
 	private String polygonStatement;
 	private double area;
-	//private point[] pointArray = new point[numOfPoints];
+	//private point pointArray[] = new point[3];					// 3 should be replaced with numOfPoints after testing is done
 
 	public polygon(){
 		//pointArray[0];
