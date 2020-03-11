@@ -1,43 +1,42 @@
 public class MyPolygons{
 	
+	Node head = new Node(null, null, null);
+	Node tail = new Node(null, null, null);
+	Node current = new Node(null, null, null);
+
 	public MyPolygons(){
-		System.out.println("testing MyPolygons constructor");
+		head = Node(polygonObject1);
 	}
 
 	public void prepend(){
-		// need to write method
+		// • prepend items into the start of the list (current item is the new first in list)
+		current = head;
 	}
 
 	public void append(){
-		// need to write method
+		// • append items into the end of the list (current item is the first in list)
 	}
 
 	public void insert(){
-		// need to write method
+		// • insert before a specified (current) item
 	}
 
 	public void next(){
-		// need to write method
+		// • step to the next item (making it the current item)
 	}
 
 	public void reset(){
-		// need to write method
+		// • reset the current item variable to the start of your list
 	}
 
 	public void removeFromHead(){
-		// need to write method
+		// • take (then remove) an item from the head of the list
 	}
 }
 
 /*
 You are required to implement a circular doubly-linked list data structure with the class name
 of MyPolygons, using a single sentinel node to mark the start/finish of what will become
-a container for Polygon objects. The MyPolygons class must provide distinct methods to
-	• prepend items into the start of the list (current item is the new first in list),
-	• append items into the end of the list (current item is the first in list),
-	• insert before a specified (current) item,
-	• step to the next item (making it the current item),
-	• reset the current item variable to the start of your list, and,
-	• take (then remove) an item from the head of the list.
+a container for Polygon objects.
 Note: that you may not have to use all the above methods in this assignment.
 */

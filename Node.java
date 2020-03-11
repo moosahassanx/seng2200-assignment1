@@ -1,14 +1,14 @@
 public class Node{
-	private int data;
+	private polygon data;
 	private Node next, previous;
 
-	public Node(int d, Node nx, Node px){
+	public Node(polygon d, Node initialNext, Node initialPrevious){
 		data = d;
-		next = nx;
-		previous = px;
+		next = initialNext;
+		previous = initialPrevious;
 	}
 
-	public void setData(int d){
+	public void setData(polygon d){
 		data = d;
 	}
 
@@ -20,7 +20,7 @@ public class Node{
 		previous = n;
 	}
 
-	public int getData(){
+	public polygon getData(){
 		return data;
 	}
 

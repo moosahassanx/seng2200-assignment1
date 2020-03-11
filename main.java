@@ -1,16 +1,23 @@
+import java.io.*;
 import java.util.Scanner;
 
 class main{
-	public static void main(String[] args){
+	public static void main(String[] args) throws IOException{
 		Scanner input = new Scanner(System.in);
+		
+		// ------------------------------------------------------------------------------------------------------
+		Scanner file = new Scanner(new File("inputfile.txt"));
 
-		// polygon polygonObject1 = new polygon();
-		// polygonObject1.toString();
+		String char1 = file.nextLine();
+		String char2 = file.nextLine();
+		String char3 = file.nextLine();
 
-		fileReaderTest fileReaderTestObject1 = new fileReaderTest();
-		fileReaderTestObject1.openFile();
-		fileReaderTestObject1.readFile();
-		fileReaderTestObject1.closeFile(); 
+		System.out.println(char1);
+		System.out.println(char2);
+		System.out.println(char3);
+
+		file.close();
+		// ------------------------------------------------------------------------------------------------------
 
 		// OUTPUT RESULT (FAKE)
 		System.out.println();

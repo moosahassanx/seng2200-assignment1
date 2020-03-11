@@ -1,7 +1,8 @@
-import java.io.*;
+import java.io.*;				// THIS FILE IS NO LONGER NEEDED, USE IT AS A REFERENCE WHEN YOURE STUCK THO
 import java.util.Scanner;
 
 class fileReaderTest{
+	/*
 	Scanner x;
 
 	public void openFile(){
@@ -14,6 +15,10 @@ class fileReaderTest{
 	}
 
 	public void readFile(){
+		System.out.println(x.nextLine());
+		System.out.println(x.nextLine());
+		System.out.println(x.nextLine());
+
 		while(x.hasNext()){									// hasNext() - as long as theres something there, itll continue
 			String a = x.next();
 			String b = x.next();
@@ -26,4 +31,7 @@ class fileReaderTest{
 	public void closeFile(){
 		x.close();
 	}
+	*/
 }
+
+// file
