@@ -1,6 +1,7 @@
 public class Node{
 	private polygon data;
 	private Node next, previous;
+	private int position;
 
 	public Node(polygon d){
 		data = d;
@@ -10,6 +11,10 @@ public class Node{
 
 	public void setData(polygon d){
 		data = d;
+	}
+
+	public void setPosition(int pos){
+		position = pos;
 	}
 
 	public void setNext(Node n){
@@ -22,6 +27,10 @@ public class Node{
 
 	public polygon getData(){
 		return data;
+	}
+
+	public int getPosition(){
+		return position;
 	}
 
 	public Node getNext(){
