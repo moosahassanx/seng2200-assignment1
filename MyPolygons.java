@@ -42,8 +42,18 @@ public class MyPolygons{
 		length++;
 	}
 
-	public void insert(){
+	public void insert(Polygon d, int pos){					// DOUBLE CHECK THIS WITH A DRAWING
 		// • insert before a specified (current) item
+		current = start;
+		while(current.getNext() != null){
+			if(current.getNext().getPosition() == pos){
+				Node tempNode = new Node(d);
+				tempNode.getNext() = current.getNext();
+				current.getNext() = tempNode;
+				return;
+			}
+			current = current.getNext();
+		}
 	}
 
 	public void next(){
