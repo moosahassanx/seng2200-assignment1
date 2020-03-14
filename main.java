@@ -4,7 +4,8 @@ import java.util.Scanner;
 class main{
 	public static void main(String[] args) throws IOException{
 		Scanner input = new Scanner(System.in);
-		//MyPolygons myPolygonsObject = new MyPolygons();
+		//MyPolygons unsortedList = new MyPolygons();
+		//MyPolygons sortedList = new MyPolygons();
 		//System.out.println(polygonTestObject.toString());
 		
 		// ------------------------------------------------------------------------------------------------------ FILE READING SECTION ---------------------------------------------------------------------
@@ -24,13 +25,6 @@ class main{
 		for(int i = 1; i < textSplit.length;i++){
 			System.out.println(textSplit[i]);
 		}
-
-		/*
-		System.out.println(textSplit[0]);
-		System.out.println(textSplit[1]);
-		System.out.println(textSplit[2]);
-		System.out.println(textSplit[3]);
-		*/
 
 		file.close();
 		// ------------------------------------------------------------------------------------------------------
