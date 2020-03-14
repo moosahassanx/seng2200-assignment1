@@ -22,8 +22,21 @@ class main{
 
 		String[] textSplit = text.split("P ");
 
-		for(int i = 1; i < textSplit.length;i++){
+		// print out each line after the split
+		for(int i = 1; i < textSplit.length; i++){
 			System.out.println(textSplit[i]);
+		}
+
+		// print out the first letter of each string that has split
+		for(int j = 1; j < textSplit.length; j++){
+			System.out.println(textSplit[j].charAt(0));
+			int numOfPoints = textSplit[j].charAt(0);
+			polygon[] polygonObject;				// THIS NEEDS FIXING (LOOK AT CONSTRUCTOR. ALSO THIS STILL HAS FAKE OUTPUT EXAMPLES)
+			// polygonObject[k] = new polygon(numOfPOints);			// MAKE A NEW POLYGON OBJECT BASED ON THE NUMBER OF POINTS
+		}
+
+		for(int k = 1; k < textSplit.length; k++){
+			System.out.println();
 		}
 
 		file.close();
