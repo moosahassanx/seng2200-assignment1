@@ -6,7 +6,6 @@ class main{
 		Scanner input = new Scanner(System.in);
 		//MyPolygons unsortedList = new MyPolygons();
 		//MyPolygons sortedList = new MyPolygons();
-		//System.out.println(polygonTestObject.toString());
 		
 		// ------------------------------------------------------------------------------------------------------ FILE READING SECTION ---------------------------------------------------------------------
 		Scanner file = new Scanner(new File("inputfile.txt"));
@@ -23,20 +22,28 @@ class main{
 		String[] textSplit = text.split("P ");
 
 		// print out each line after the split
+		int splitCounter = 0;
 		for(int i = 1; i < textSplit.length; i++){
 			System.out.println(textSplit[i]);
+			splitCounter++;
 		}
+
+		System.out.println("splitCounter after for loop: " + splitCounter);
+		polygon[] polygonObject = new polygon[splitCounter];
+
+		/*
+		arrayTestCounter = 0;
+		for(int i = 1; i < textSplit.length; i++){
+			polygonObject[arrayTestCounter].stringInput(textSplit[i]);
+			arrayTestCounter++;
+		}
+		*/
 
 		// print out the first letter of each string that has split
 		for(int j = 1; j < textSplit.length; j++){
 			System.out.println(textSplit[j].charAt(0));
 			int numOfPoints = textSplit[j].charAt(0);
-			polygon[] polygonObject;				// THIS NEEDS FIXING (LOOK AT CONSTRUCTOR. ALSO THIS STILL HAS FAKE OUTPUT EXAMPLES)
-			// polygonObject[k] = new polygon(numOfPOints);			// MAKE A NEW POLYGON OBJECT BASED ON THE NUMBER OF POINTS
-		}
-
-		for(int k = 1; k < textSplit.length; k++){
-			System.out.println();
+			//polygonObject[j-1].setNumOfPoints(numOfPoints);
 		}
 
 		file.close();
@@ -60,3 +67,24 @@ class main{
 		System.out.println("[(4.00 , 0.00)(4.00 , 8.10)(7.20 , 8.00)(7.00 , 3.00)(9.00 , 0.00)]: 27.66");
 	}
 }
+
+
+// main
+	// MyPolygons
+		// polygon
+			// point
+			// point
+			// point
+			// point
+			// point
+			// point
+		// polygon
+			// point
+			// point
+			// point
+		// polygon
+			// point
+			// point
+			// point
+			// point
+			// point
