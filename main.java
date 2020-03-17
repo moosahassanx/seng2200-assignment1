@@ -9,55 +9,27 @@ class main{
 		
 		Scanner file = new Scanner(new File("inputfile.txt"));
 		String text = "";
+		String newText = "";
 
 		try{
-			while(file.hasNextLine()){
-				text = text + file.next() + " ";
+			while(file.hasNext()){
+				newText = file.next();
+				if(newText.equals("P")){
+					System.out.println("the file read P");
+					int numOfPoints = file.nextInt();
+					System.out.println("numOfPoints: " + numOfPoints);
+					int i = 1;
+					while(i <= numOfPoints){
+						double x = file.nextDouble();
+						double y = file.nextDouble();
+						System.out.println("(" + x + ", " + y + ")");
+						i++;
+					}
+				}
 			}
 		}catch(Exception e){
 			System.out.println("Error with reading files");
 		}
-
-		// split the line based on recognising "P " (including the space)
-		String[] textSplit = text.split("P ");
-
-		// print out each line after the split
-		
-		int splitCounter = 0;
-		for(int i = 1; i < textSplit.length; i++){
-			System.out.println(textSplit[i]);
-			splitCounter++;
-		}
-
-		System.out.println("textSplit[1].charAt(0): " + textSplit[1].charAt(0));
-		double testing = Double.parseDouble( textSplit[1].substring(0) );
-		System.out.println("after assigning to double: " + testing);
-		
-		/*
-		System.out.println();
-		System.out.println("splitCounter after for loop: " + splitCounter);
-		polygon[] polygonObject = new polygon[splitCounter];
-		System.out.println();
-		*/
-
-		// print out the first letter of each string that has split
-		/*
-		int j = 1;
-		while(j < textSplit.length){
-			polygon polygonObject = new polygon();
-			for( int f = 0; f < textSplit[j].charAt(0); f++ ){
-				point[] pointArray = new point[];
-				textSplit[j].nextInt() = 
-			}
-
-
-
-			System.out.println(textSplit[j].charAt(0));
-			int numOfPoints = textSplit[j].charAt(0);
-			j++;
-		}
-		*/
-
 
 		file.close();
 	}
