@@ -4,7 +4,7 @@ import java.util.Scanner;
 class main{
 	public static void main(String[] args) throws IOException{
 		Scanner input = new Scanner(System.in);
-		//MyPolygons unsortedList = new MyPolygons();
+		MyPolygons unsortedList = new MyPolygons();
 		//MyPolygons sortedList = new MyPolygons();
 		
 		// ------------------------------------------------------------------------------------------------------ FILE READING SECTION ---------------------------------------------------------------------

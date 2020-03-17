@@ -7,7 +7,6 @@ public class polygon{
 	public polygon(){
 		System.out.println("polygon string input test: " + feedString);
 	}
-
 	
 	public String toString(){
 		/*
