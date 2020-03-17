@@ -16,13 +16,17 @@ class main{
 				newText = file.next();
 				if(newText.equals("P")){
 					System.out.println("the file read P");
+					polygon polygonObject = new polygon();
 					int numOfPoints = file.nextInt();
 					System.out.println("numOfPoints: " + numOfPoints);
-					int i = 1;
+					point[] pointArray = new point[numOfPoints];
+					int i = 1, j = 0;
 					while(i <= numOfPoints){
 						double x = file.nextDouble();
 						double y = file.nextDouble();
 						System.out.println("(" + x + ", " + y + ")");
+						pointArray[j]. = new point(x, y);
+						j++;
 						i++;
 					}
 				}

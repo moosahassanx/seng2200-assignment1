@@ -1,12 +1,10 @@
 public class polygon{
 	private String polygonStatement;
 	private double area;
-	private int numOfPoints;
 	private String feedString;
 
-	public polygon(int p){
+	public polygon(){
 		System.out.println("polygon has successfully loaded");
-		int numOfPoints = p;
 	}
 	
 	public String toString(){
