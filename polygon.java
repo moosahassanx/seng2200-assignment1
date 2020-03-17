@@ -4,8 +4,9 @@ public class polygon{
 	private int numOfPoints;
 	private String feedString;
 
-	public polygon(){
-		System.out.println("polygon string input test: " + feedString);
+	public polygon(int p){
+		System.out.println("polygon has successfully loaded");
+		int numOfPoints = p;
 	}
 	
 	public String toString(){
@@ -20,10 +21,6 @@ public class polygon{
 
 		// FOR TESTING PURPOSES (NOT FINAL)
 		return polygonStatement = "[" + "NEED TO ADD pointObject.toString() here" + "]: " + calculateArea();
-	}
-
-	public void setNumOfPoints(int p){
-		numOfPoints = p;
 	}
 
 	public double calculateArea(){
