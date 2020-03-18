@@ -1,10 +1,16 @@
 public class polygon{
 	private String polygonStatement;
-	private double area;
 	private String feedString;
+	private point[] pointArray;
+	private int pointCounter;
+	private int numOfPoints;
 
-	public polygon(){
-		System.out.println("polygon has successfully loaded");
+	public polygon(int points){
+		polygonStatement = "";
+		feedString = "";
+		pointArray = new point[points];
+		pointCounter = 0;
+		numOfPoints = points;
 	}
 	
 	public String toString(){
@@ -22,7 +28,27 @@ public class polygon{
 	}
 
 	public double calculateArea(){
-		return area = 22222222;
+		double area = 0.0;
+		int j = numOfPoints - 1;
+
+		for(int i = 0; i < numOfPoints; i++){
+			area += (   (pointArray[j].getX() + pointArray[i].getX()) * (pointArray[j].getY() + pointArray[i].getY())   );
+			j = i;
+		}
+
+		return Math.abs(area) / 2;
+
+		/* ---------------------------- AIDENS CALCULATEAREA() USE AS REFERENCE
+		double area = 0.0;
+
+		// implementation of provided formula
+		for(int i = 0; i < numOfPoints; i++){
+			area += (numOfPoints[(i+1) % numOfPoints]);
+		}
+
+		// absolute value
+		return Math.abs(area) / 2;
+		*/
 	}
 
 	public void stringInput(String i){
@@ -37,5 +63,10 @@ public class polygon{
 	public boolean comparePoly(polygon o){
 		return true;
 		// need to finish method
+	}
+
+	public void insertPoint(double xInput, double yInput){
+		pointArray[pointCounter] = new point(xInput, yInput);
+		pointCounter++;
 	}
 }
