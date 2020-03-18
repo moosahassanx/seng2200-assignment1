@@ -43,10 +43,3 @@ public class MyPolygons{
 		return sentinel;
 	}
 }
-
-/*
-You are required to implement a circular doubly-linked list data structure with the class name
-of MyPolygons, using a single sentinel node to mark the start/finish of what will become
-a container for Polygon objects.
-Note: that you may not have to use all the above methods in this assignment.
-*/
