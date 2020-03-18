@@ -18,4 +18,12 @@ public class point{
 	public String toString(){
 		return pointStatement = "(" + xCoord + " , " + yCoord + ")";
 	}
+
+	public double getX(){
+		return xCoord;
+	}
+
+	public double getY(){
+		return yCoord;
+	}
 }
