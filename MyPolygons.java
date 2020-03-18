@@ -1,23 +1,60 @@
 public class MyPolygons{
-	Node current, sentinel;
+	Node current, sentinel, head, tail;
 	int length;
 
 	// the one with an object of polygon being passed through
 	public MyPolygons(){
-		sentinel = current;
+		current = null;
+		sentinel = null;
+		head = null;
+		tail = null;
 		length = 0;
 	}
 
-	public void prepend(polygon d){		// add to head
+	public String toString(){																		// PA1 CODING!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+		String printer = "";
+
+		for(int i = 0; i < length; i++)
+        {
+            printer += current.getData().toString()+"\n";
+            //System.out.println(current.getData());
+            next();
+        }
+
+        return printer;
+	}
+
+	public void prepend(polygon polygonObject){		// add to head
 		// • prepend items into the start of the list (current item is the new first in list)
 		length++;
 	}
 
-	public void append(polygon d){			// add to tail
+	public void append(polygon polygonObject){			// add to tail
+		Node temp = new Node(polygonObject);       
+        //if its empty just add																		// PA1 CODING!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        if (head == null)
+        {
+            temp.setNext(temp);
+            temp.setPrevious(temp);
+            head = temp;
+            tail = head;
+            current = tail;
+        }
+        //making sure next and previous is set correctly
+        else
+        {
+            temp.setPrevious(tail);
+            tail.setNext(temp);
+            head.setPrevious(temp);
+            temp.setNext(head);
+            tail = temp;
+            current = tail;
+        }
+        //updates size
 		length++;
 	}
 
-	public void insert(polygon d, int pos){					// DOUBLE CHECK THIS WITH A DRAWING
+	public void insert(polygon polygonObject, int pos){					// DOUBLE CHECK THIS WITH A DRAWING
 		// • insert before a specified (current) item
 	}
 
