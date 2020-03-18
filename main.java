@@ -5,10 +5,8 @@ class main{
 	public static void main(String[] args) throws IOException{
 		Scanner input = new Scanner(System.in);
 		MyPolygons unsortedList = new MyPolygons();
-		MyPolygons sortedList = new MyPolygons();
 		
 		Scanner file = new Scanner(new File("inputfile.txt"));
-		String text = "";
 		String newText = "";
 
 		try{
@@ -32,7 +30,7 @@ class main{
 						i++;
 					}
 
-					System.out.println(polygonObject.toString());
+					unsortedList.append(polygonObject);
 				}
 			}
 		}catch(Exception e){
@@ -43,12 +41,11 @@ class main{
 		// -------------------------- TESTING AREA -----------------------------
 
 
-
 		// -------------------------------------------------------------------------------------------------------- FINAL PARTS OF THE CODE ------------------------------------------------------------------------------------
-		/*
-		System.out.println("Unsorted List");
-		System.out.println(unsorted.toString());
 		
+		System.out.println("Unsorted List");
+		System.out.println(unsortedList.toString());
+		/*
 		sortedList = unsortedList;
 		sortedList.insertionSort();
 		
