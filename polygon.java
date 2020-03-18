@@ -39,10 +39,6 @@ public class polygon{
 		feedString = i;
 	}
 
-	public void distanceFromOrigin(){
-		// need to write method
-	}
-
 	//@Override // this is implementing the file comparePoly method from comparePoly.java --> CONSULT EGG
 	public boolean comparePoly(polygon o){
 		return true;
