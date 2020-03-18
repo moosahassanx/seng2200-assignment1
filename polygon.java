@@ -14,17 +14,13 @@ public class polygon{
 	}
 	
 	public String toString(){
-		/*
-		int counter = 0;
-		while(counter != numOfPoints()){
-			String tempLine = point[counter].toString();
-			counter++;
-		}
-		return polygonStatement = "[" + tempLine + "]: " + calculateArea();
-		*/
+		String pointLine = "";
 
-		// FOR TESTING PURPOSES (NOT FINAL)
-		return polygonStatement = "[" + "NEED TO ADD pointObject.toString() here" + "]: " + calculateArea();
+		for(int i = 0; i < numOfPoints; i++){
+			pointLine = pointLine + pointArray[i].toString();
+		}
+
+		return polygonStatement = "[" + pointLine + "]: " + calculateArea();
 	}
 
 	public double calculateArea(){
@@ -37,18 +33,6 @@ public class polygon{
 		}
 
 		return Math.abs(area) / 2;
-
-		/* ---------------------------- AIDENS CALCULATEAREA() USE AS REFERENCE
-		double area = 0.0;
-
-		// implementation of provided formula
-		for(int i = 0; i < numOfPoints; i++){
-			area += (numOfPoints[(i+1) % numOfPoints]);
-		}
-
-		// absolute value
-		return Math.abs(area) / 2;
-		*/
 	}
 
 	public void stringInput(String i){
