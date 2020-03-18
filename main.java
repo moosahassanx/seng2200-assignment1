@@ -17,6 +17,7 @@ class main{
 				
 				if(newText.equals("P")){					
 					int numOfPoints = file.nextInt();
+					
 					polygon polygonObject = new polygon(numOfPoints);
 
 					point[] pointArray = new point[numOfPoints];
@@ -44,12 +45,16 @@ class main{
 
 
 		// -------------------------------------------------------------------------------------------------------- FINAL PARTS OF THE CODE ------------------------------------------------------------------------------------
+		/*
+		System.out.println("Unsorted List");
+		System.out.println(unsorted.toString());
+		
 		sortedList = unsortedList;
-		//sortedList.sortList();
-
-		//System.out.println(unsortedList.toString());
-		//System.out.println(sortedList.toString());
-
+		sortedList.insertionSort();
+		
+		System.out.println("Sorted List");
+		System.out.println(sortedList.toString());
+		*/
 		file.close();
 	}
 }
