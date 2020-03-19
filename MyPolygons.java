@@ -1,57 +1,97 @@
 public class MyPolygons{
-	Node current, sentinel, head, tail;
+	Node current, sentinel, start;
 	int length;
 
 	// the one with an object of polygon being passed through
 	public MyPolygons(){
 		current = null;
 		sentinel = null;
-		head = null;
-		tail = null;
+		start = null;
 		length = 0;
 	}
 
-	public String toString(){																		// PA1 CODING!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+	public String toString(){
 		String printer = "";
 
-		for(int i = 0; i < length; i++)
-        {
-            printer += current.getData().toString()+"\n";
-            //System.out.println(current.getData());
-            next();
-        }
+		for(int i = 0; i < length; i++){
+			printer = printer + current.getData().toString() + "\n";
+			next();
+		}
 
         return printer;
 	}
 
-	public void prepend(polygon polygonObject){		// add to head
-		// • prepend items into the start of the list (current item is the new first in list)
+	public void prepend(polygon polygonObject){
+		Node temp = new Node(polygonObject);
+		
+		if(length == 0){
+			sentinel = temp;
+			current = sentinel;
+			start = sentinel;
+			sentinel.setNext(sentinel);
+			sentinel.setPrevious(sentinel);
+			temp = sentinel;
+			reset();
+		}else{
+			temp.setNext(sentinel);
+			temp.setPrevious(sentinel.getPrevious());
+			sentinel.getPrevious().setNext(temp);
+			sentinel.setPrevious(temp);
+			temp = sentinel;
+			reset();
+		}
 		length++;
 	}
 
-	public void append(polygon polygonObject){			// add to tail
-		Node temp = new Node(polygonObject);       
-        //if its empty just add																		// PA1 CODING!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-        if (head == null)
-        {
-            temp.setNext(temp);
-            temp.setPrevious(temp);
-            head = temp;
-            tail = head;
-            current = tail;
-        }
-        //making sure next and previous is set correctly
-        else
-        {
-            temp.setPrevious(tail);
-            tail.setNext(temp);
-            head.setPrevious(temp);
-            temp.setNext(head);
-            tail = temp;
-            current = tail;
-        }
-        //updates size
+	public void append(polygon polygonObject){
+		Node temp = new Node(polygonObject);
+		
+		if(length == 0){
+			sentinel = temp;
+			current = sentinel;
+			sentinel.setNext(sentinel);
+			sentinel.setPrevious(sentinel);
+			reset();
+		}else{
+			temp.setNext(sentinel);
+			temp.setPrevious(sentinel.getPrevious());
+			sentinel.getPrevious().setNext(temp);
+			sentinel.setPrevious(temp);
+			reset();
+		}
 		length++;
+	}
+	
+	/*
+	for(int i = 0; i < number of nodes; i++){
+		if(node1.comesBefore(node2)){
+			// code
+		}else{
+			
+		}
+	}
+	*/
+
+
+	public void insertSort(){
+		System.out.println("Sorted List:");
+		
+		if(current.getData().comesBefore(current.getNext().getData())){
+			System.out.println("24.5 is less than 13.5399999996");
+			// swap current WITH current.getNext()
+			Node tempCurrent = new Node(current.getData());
+			Node tempNext = new Node(current.getNext().getData());
+			current.setData(tempNext.getData());
+			current.getNext().setData(tempCurrent.getData());
+		}else{
+			System.out.println("24.5 is greater than 13.5399999996");
+		}
+
+		if(current.getData().comesBefore(current.getPrevious().getData())){
+			System.out.println("24.5 is less than 27.66");
+		}else{
+			System.out.println("24.5 is greater than 27.66");
+		}
 	}
 
 	public void insert(polygon polygonObject, int pos){					// DOUBLE CHECK THIS WITH A DRAWING
@@ -59,17 +99,16 @@ public class MyPolygons{
 	}
 
 	public void next(){
-		// • step to the next item (making it the current item)
-		// COMMENT THIS OUT WHEN YOURE DONE
 		current = current.getNext();
 	}
 
 	public void reset(){
-		// • reset the current item variable to the start of your list
+		current = sentinel;
 	}
 
-	public void removeFromHead(){			// https://www.javatpoint.com/deletion-in-circular-doubly-linked-list-at-beginning
+	public void removeFromHead(){
 		// • take (then remove) an item from the head of the list
+		length--;
 	}
 
 	public Node getCurrent(){
