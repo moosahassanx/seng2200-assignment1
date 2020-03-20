@@ -71,43 +71,41 @@ public class MyPolygons{
 		length++;
 	}
 
-	public void insertSort(){
-		System.out.println("Sorted List:");				// JORDAN BE LIKE key = current.getNext()
+	public void insertSort(){								// note to self: double check prepend()
+		System.out.println("Sorted List:");
 		
+		MyPolygons sortedList = new MyPolygons();
 
 		reset();
-		Node key;
 
 		for(int i = 0; i < length; i++){
-			key = current.getNext();
-			while(current.getData().comesBefore(key.getData())){
-				next();			// node after current now becomes current
-				if(key == sentinel){
-					break;
+			sortedList.reset();
+			if(sortedList.getLength() == 0){
+				sortedList.append(sentinel.getData());
+			}else if(current.getData().comesBefore(sortedList.getCurrent().getData())){
+				sortedList.prepend(current.getData());
+			}else{
+				for(int j = 0; j < sortedList.getLength(); j++){
+					if(current.getData().comesBefore(sortedList.getCurrent().getData())){
+						sortedList.insert(current.getData());
+					}else{
+						sortedList.next();
+					}
 				}
 			}
-			if(key == sentinel){
-				break;
-			}
-	
-			while(key.getData().comesBefore(current.getData())){
-				if(nodePosition == 1){
-					insert(key.getData());
-					remove(getPosition(key));
-					break;
-				}
-				current = current.getPrevious();
-				nodePosition--;
-			}
-
-			if(current != sentinel){
-				current = current.getNext();
-				insert(key.getData());
-				remove(getPosition(key));
-			}
+			next();
 		}
 
-		
+		for(int k = 0; k < sortedList.getLength(); k++){
+			// remove from unsorted list
+			// append from sorted list
+			remove();
+			append(sortedList.remove());
+		}
+	}
+
+	public int getLength(){
+		return length;
 	}
 
 	// accessor method for position of node
@@ -116,7 +114,7 @@ public class MyPolygons{
 		Node tempNode = sentinel;
 		
 		int i = 1;
-		while(i < length){
+		while(i <= length){
 			if(tempNode == n){						// sentinel matches the input node
 				return i;
 			}else{
@@ -130,8 +128,8 @@ public class MyPolygons{
 
 	public void insert(polygon polygonObject){
 		// • insert before a specified (current) item
-		if(length <= 0){
-			return;
+		if(length == 0){
+			append(polygonObject);
 		}else{
 			Node tempNode = new Node(polygonObject);
 			Node tempCurrent = current.getPrevious();
@@ -146,25 +144,25 @@ public class MyPolygons{
 			}
 		}
 	}
+	
 
-	public void remove(int position){
+
+	// if(nothing in list)
+	// if(there is 1 thing in list)
+
+	public polygon remove(){			// remove from head (AKA remove from sentinel)
 		// • take (then remove) an item from the head of the list
-		if(position > length){				// might need an extra condition for when the position is less than 1
-			return;
-		}else{
-			reset();
-			while(nodePosition != position){
-				current = current.getNext();
-				nodePosition++;
-			}
-			Node tempNode = current.getPrevious();
-			tempNode.setNext(current.getNext());
-			tempNode = current.getNext();
-			tempNode.setPrevious(current.getPrevious());
-			current = tempNode;
-			length--;
-			reset();
-		}
+		current = sentinel.getNext();
+		
+		Node temp = sentinel;
+
+		sentinel.getNext().setPrevious(sentinel.getPrevious());
+		sentinel.getPrevious().setNext(sentinel.getNext());
+		
+		sentinel = current;
+
+		length--;
+		return temp.getData();
 	}
 
 	// set next node of current as current current
