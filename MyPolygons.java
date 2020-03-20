@@ -1,33 +1,42 @@
 public class MyPolygons{
-	Node current, sentinel, start;
-	int length;
+	// declare private variables
+	private Node current;
+	private Node sentinel;
+	private int length;
+	private int nodePosition;
 
 	// the one with an object of polygon being passed through
-	public MyPolygons(){
+	public MyPolygons() {
+		// instantiate private variables
 		current = null;
 		sentinel = null;
-		start = null;
 		length = 0;
+		nodePosition = 0;
 	}
 
-	public String toString(){
+	// return list of polygons as a string
+	public String toString() {
+		// declare and instantiate string
 		String printer = "";
 
-		for(int i = 0; i < length; i++){
+		// loop for each node
+		for (int i = 0; i < length; i++) {
+			// add string to polygon
 			printer = printer + current.getData().toString() + "\n";
+			// iterate to next node
 			next();
 		}
-
-        return printer;
+		
+		// return string
+		return printer;
 	}
 
-	public void prepend(polygon polygonObject){
+	public void prepend(polygon polygonObject) {
 		Node temp = new Node(polygonObject);
-		
-		if(length == 0){
+
+		if (length == 0) {
 			sentinel = temp;
 			current = sentinel;
-			start = sentinel;
 			sentinel.setNext(sentinel);
 			sentinel.setPrevious(sentinel);
 			temp = sentinel;
@@ -61,56 +70,115 @@ public class MyPolygons{
 		}
 		length++;
 	}
-	
-	/*
-	for(int i = 0; i < number of nodes; i++){
-		if(node1.comesBefore(node2)){
-			// code
-		}else{
-			
-		}
-	}
-	*/
-
 
 	public void insertSort(){
-		System.out.println("Sorted List:");
+		System.out.println("Sorted List:");				// JORDAN BE LIKE key = current.getNext()
 		
-		if(current.getData().comesBefore(current.getNext().getData())){
-			System.out.println("24.5 is less than 13.5399999996");
-			// swap current WITH current.getNext()
-			Node tempCurrent = new Node(current.getData());
-			Node tempNext = new Node(current.getNext().getData());
-			current.setData(tempNext.getData());
-			current.getNext().setData(tempCurrent.getData());
-		}else{
-			System.out.println("24.5 is greater than 13.5399999996");
+
+		reset();
+		Node key;
+
+		for(int i = 0; i < length; i++){
+			key = current.getNext();
+			while(current.getData().comesBefore(key.getData())){
+				next();			// node after current now becomes current
+				if(key == sentinel){
+					break;
+				}
+			}
+			if(key == sentinel){
+				break;
+			}
+	
+			while(key.getData().comesBefore(current.getData())){
+				if(nodePosition == 1){
+					insert(key.getData());
+					remove(getPosition(key));
+					break;
+				}
+				current = current.getPrevious();
+				nodePosition--;
+			}
+
+			if(current != sentinel){
+				current = current.getNext();
+				insert(key.getData());
+				remove(getPosition(key));
+			}
 		}
 
-		if(current.getData().comesBefore(current.getPrevious().getData())){
-			System.out.println("24.5 is less than 27.66");
-		}else{
-			System.out.println("24.5 is greater than 27.66");
-		}
+		
 	}
 
-	public void insert(polygon polygonObject, int pos){					// DOUBLE CHECK THIS WITH A DRAWING
+	// accessor method for position of node
+	public int getPosition(Node n){
+		// create temporary node
+		Node tempNode = sentinel;
+		
+		int i = 1;
+		while(i < length){
+			if(tempNode == n){						// sentinel matches the input node
+				return i;
+			}else{
+				// iterate to next node
+				tempNode = tempNode.getNext();
+			}
+			i++;
+		}
+		return 1;
+	}
+
+	public void insert(polygon polygonObject){
 		// • insert before a specified (current) item
+		if(length <= 0){
+			return;
+		}else{
+			Node tempNode = new Node(polygonObject);
+			Node tempCurrent = current.getPrevious();
+			tempCurrent.setNext(tempNode);
+			current.setPrevious(tempNode);
+			tempNode.setNext(current);
+			tempNode.setPrevious(tempCurrent);
+			length++;
+			current = current.getPrevious();
+			if(nodePosition == 1){
+				sentinel = current;
+			}
+		}
 	}
 
+	public void remove(int position){
+		// • take (then remove) an item from the head of the list
+		if(position > length){				// might need an extra condition for when the position is less than 1
+			return;
+		}else{
+			reset();
+			while(nodePosition != position){
+				current = current.getNext();
+				nodePosition++;
+			}
+			Node tempNode = current.getPrevious();
+			tempNode.setNext(current.getNext());
+			tempNode = current.getNext();
+			tempNode.setPrevious(current.getPrevious());
+			current = tempNode;
+			length--;
+			reset();
+		}
+	}
+
+	// set next node of current as current current
 	public void next(){
 		current = current.getNext();
 	}
 
+	// reset position of circular doubly linked list
 	public void reset(){
 		current = sentinel;
+		nodePosition = 1;
 	}
 
-	public void removeFromHead(){
-		// • take (then remove) an item from the head of the list
-		length--;
-	}
-
+	// accessor methods
 	public Node getCurrent(){
 		return current;
 	}
