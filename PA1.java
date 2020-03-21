@@ -61,8 +61,8 @@ class PA1{
 		/*
 		unsortedList.insertSort();
 		*/
-
-		MyPolygons sortedList = unsortedList.insertSort(new MyPolygons());
+		MyPolygons sortedList = new MyPolygons();
+		unsortedList.insertSort(new MyPolygons());
 		// print sorted list
 		System.out.println(sortedList.toString());
 	}
