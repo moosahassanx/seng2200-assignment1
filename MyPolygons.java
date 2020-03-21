@@ -32,24 +32,9 @@ public class MyPolygons{
 	}
 
 	public void prepend(polygon polygonObject) {
-		Node temp = new Node(polygonObject);
-
-		if (length == 0) {
-			sentinel = temp;
-			current = sentinel;
-			sentinel.setNext(sentinel);
-			sentinel.setPrevious(sentinel);
-			temp = sentinel;
-			reset();
-		}else{
-			temp.setNext(sentinel);
-			temp.setPrevious(sentinel.getPrevious());
-			sentinel.getPrevious().setNext(temp);
-			sentinel.setPrevious(temp);
-			temp = sentinel;
-			reset();
-		}
-		length++;
+		append(polygonObject);
+		sentinel = sentinel.getPrevious();
+		reset();
 	}
 
 	public void append(polygon polygonObject){
@@ -71,22 +56,67 @@ public class MyPolygons{
 		length++;
 	}
 
-	public void insertSort(){								// note to self: double check prepend()
+	public MyPolygons insertSort(MyPolygons sL){								// note to self: double check prepend()
 		System.out.println("Sorted List:");
 		
-		MyPolygons sortedList = new MyPolygons();
+		MyPolygons sortedList = sL;
 
-		reset();
-
+		reset();				// set current as sentinel (first position) TOP LIST
+		
 		for(int i = 0; i < length; i++){
 			sortedList.reset();
 			if(sortedList.getLength() == 0){
 				sortedList.append(sentinel.getData());
-			}else if(current.getData().comesBefore(sortedList.getCurrent().getData())){
+			}else if(current.getData().comesBefore(sortedList.current.getData())){
 				sortedList.prepend(current.getData());
 			}else{
 				for(int j = 0; j < sortedList.getLength(); j++){
-					if(current.getData().comesBefore(sortedList.getCurrent().getData())){
+					if(current.getData().comesBefore(sortedList.getCurrent())){
+						sortedList.append(current.getData());
+						break;
+					}else{
+						sortedList.next();
+					}
+				}
+			}
+			next();
+		}
+		
+		/* GOD
+		for (int i = 0; i < length; i++){
+            sortedList.reset();
+
+            if(sortedList.getLength() == 0){
+                sortedList.prepend(sentinel.getData());
+            }else if (current.getData().comesBefore(sortedList.getCurrent())){
+                sortedList.prepend(current.getData());
+            }else{
+                sortedList.next();
+
+                for(int j = 1; j < sortedList.getLength(); j++){
+                    if (current.getData().comesBefore(sortedList.current.getData())){
+                        break;
+					}else{
+						sortedList.next();
+					}
+                }
+                sortedList.insert(current.getData());
+            }
+            this.next();
+		}
+		*/
+		
+
+		/* JOSH HELPING
+		for(int i = 0; i < length; i++){
+			sortedList.reset();							// set current as sentinel (first position) BOTTOM LIST
+			if(sortedList.getLength() == 0){
+				sortedList.append(sentinel.getData());
+			}else if(current.getData().comesBefore(sortedList.getCurrent())){
+				sortedList.prepend(current.getData());
+			}else{
+				for(int j = 0; j < sortedList.getLength(); j++){
+					if(current.getData().comesBefore(sortedList.getCurrent())){
 						sortedList.insert(current.getData());
 					}else{
 						sortedList.next();
@@ -102,6 +132,9 @@ public class MyPolygons{
 			remove();
 			append(sortedList.remove());
 		}
+		*/
+
+		return sortedList;
 	}
 
 	public int getLength(){
@@ -130,39 +163,37 @@ public class MyPolygons{
 		// • insert before a specified (current) item
 		if(length == 0){
 			append(polygonObject);
+			current = sentinel;
 		}else{
 			Node tempNode = new Node(polygonObject);
-			Node tempCurrent = current.getPrevious();
-			tempCurrent.setNext(tempNode);
-			current.setPrevious(tempNode);
+			tempNode.setPrevious(current.getPrevious());
 			tempNode.setNext(current);
-			tempNode.setPrevious(tempCurrent);
+			current.getPrevious().setNext(tempNode);
+			current.setPrevious(tempNode);
 			length++;
-			current = current.getPrevious();
-			if(nodePosition == 1){
-				sentinel = current;
-			}
 		}
 	}
-	
-
-
-	// if(nothing in list)
-	// if(there is 1 thing in list)
 
 	public polygon remove(){			// remove from head (AKA remove from sentinel)
 		// • take (then remove) an item from the head of the list
 		current = sentinel.getNext();
 		
-		Node temp = sentinel;
+		if(length == 0){						// if there are no nodes in the linked list
+			// do nothing
+		}else if(length == 1){					// if there is 1 node in the linked list
+			sentinel = null;
+		}else{
+			Node temp = sentinel;
 
-		sentinel.getNext().setPrevious(sentinel.getPrevious());
-		sentinel.getPrevious().setNext(sentinel.getNext());
-		
-		sentinel = current;
-
-		length--;
-		return temp.getData();
+			sentinel.getNext().setPrevious(sentinel.getPrevious());
+			sentinel.getPrevious().setNext(sentinel.getNext());
+			
+			sentinel = current;
+	
+			length--;
+			return temp.getData();
+		}
+		return current.getData();
 	}
 
 	// set next node of current as current current
@@ -177,11 +208,11 @@ public class MyPolygons{
 	}
 
 	// accessor methods
-	public Node getCurrent(){
-		return current;
+	public polygon getCurrent(){
+		return current.getData();
 	}
 
-	public Node getSentinel(){
-		return sentinel;
+	public polygon getSentinel(){
+		return sentinel.getData();
 	}
 }

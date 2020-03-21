@@ -57,9 +57,13 @@ class PA1{
 		// print unsorted list
 		System.out.println("Unsorted List:");
 		System.out.println(unsortedList.toString());
-		// rearrange nodes in linked list
+		
+		/*
 		unsortedList.insertSort();
+		*/
+
+		MyPolygons sortedList = unsortedList.insertSort(new MyPolygons());
 		// print sorted list
-		System.out.println(unsortedList.toString());
+		System.out.println(sortedList.toString());
 	}
 }
