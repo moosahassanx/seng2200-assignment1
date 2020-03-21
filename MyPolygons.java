@@ -72,7 +72,8 @@ public class MyPolygons
 
         reset();                // set current as sentinel (first position) TOP LIST
 
-        for (int i = 0; i < length; i++){
+        for (int i = 0; i < length; i++)
+        {
             sortedList.reset();
             if (sortedList.getLength() == 0)
             {
