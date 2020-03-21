@@ -5,7 +5,7 @@ public class Node{
 	private int position;
 
 	// constructor
-	public Node(polygon d){
+	public Node(final polygon d) {
 		// instantiate variables and objects
 		data = d;
 		next = null;
@@ -13,19 +13,19 @@ public class Node{
 	}
 
 	// mutator methods
-	public void setData(polygon d){
+	public void setData(final polygon d) {
 		data = d;
 	}
 
-	public void setPosition(int pos){
+	public void setPosition(final int pos) {
 		position = pos;
 	}
 
-	public void setNext(Node n){
+	public void setNext(final Node n) {
 		next = n;
 	}
 
-	public void setPrevious(Node n){
+	public void setPrevious(final Node n) {
 		previous = n;
 	}
 

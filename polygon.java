@@ -1,12 +1,12 @@
 public class polygon{
 	// variables and objects
-	private point[] pointArray;
+	private final point[] pointArray;
 	private int pointCounter;
-	private int numOfPoints;
+	private final int numOfPoints;
 	private double pointLowestFromOrigin;
 
 	// constructor
-	public polygon(int points) {
+	public polygon(final int points) {
 		// instantiating variables and objects
 		pointArray = new point[points];
 		pointCounter = 0;
@@ -36,7 +36,8 @@ public class polygon{
 
 		// formula given by assignment converted into code (except halving)
 		for (int i = 0; i < numOfPoints; i++) {
-			area = area + ((pointArray[j].getX() + pointArray[i].getX()) * (pointArray[j].getY() - pointArray[i].getY()));
+			area = area
+					+ ((pointArray[j].getX() + pointArray[i].getX()) * (pointArray[j].getY() - pointArray[i].getY()));
 			j = i;
 		}
 
@@ -45,7 +46,7 @@ public class polygon{
 	}
 
 	// add point to the polygon
-	public void insertPoint(double xInput, double yInput){
+	public void insertPoint(final double xInput, final double yInput) {
 		// adding array of point as a new point
 		pointArray[pointCounter] = new point(xInput, yInput);
 		// test if new point is closer than previous point
@@ -54,38 +55,42 @@ public class polygon{
 		pointCounter++;
 	}
 
-	// interface - gives the function names. e.g. function killBlacks() --> on file might stab them in the back, other file might shoot them in the head
-	public boolean comesBefore(polygon data){
+	// interface - gives the function names. e.g. function killBlacks() --> on file
+	// might stab them in the back, other file might shoot them in the head
+	public boolean comesBefore(final polygon data) {
 		// formula for difference of areas as a percentage
-		double difference = ( Math.abs(this.calculateArea() - data.calculateArea()));
-		
-		if(difference <= 0.001){													// 0.1% or less difference
-			if(this.pointLowestFromOrigin < data.pointLowestFromOrigin){
+		final double difference = (Math.abs(this.calculateArea() - data.calculateArea()));
+
+		if (difference <= 0.001) { // 0.1% or less difference
+			if (this.pointLowestFromOrigin < data.pointLowestFromOrigin) {
 				return true;
 			}
 			return false;
-		}else if(this.calculateArea() < data.calculateArea()){					// area of old polygon is less than new polygon area
+		} else if (this.calculateArea() < data.calculateArea()) { // area of old polygon is less than new polygon area
 			return true;
-		}else
-		{
+		} else {
 			return false;
 		}
 	}
 
 	// take point closest to origin and set as lowest distance of the polygon
-	public void testLowestFromOrigin(int p){
+	public void testLowestFromOrigin(final int p) {
 		// declaring and instantiating variable
-		int q = p - 1;
-		
-		if(p == 0){																					// no existing points means the first point will be set as point closest to origin of polygon
+		final int q = p - 1;
+
+		if (p == 0) { // no existing points means the first point will be set as point closest to
+						// origin of polygon
 			setLowestFromOrigin(pointArray[p].distanceFromOrigin());
-		}else if(pointArray[p].distanceFromOrigin() < pointArray[q].distanceFromOrigin()){			// comparing new point to previous point and set as point closest to origin of polygon
+		} else if (pointArray[p].distanceFromOrigin() < pointArray[q].distanceFromOrigin()) { // comparing new point to
+																								// previous point and
+																								// set as point closest
+																								// to origin of polygon
 			setLowestFromOrigin(pointArray[p].distanceFromOrigin());
 		}
 	}
 
 	// mutator method
-	public void setLowestFromOrigin(double s){
+	public void setLowestFromOrigin(final double s) {
 		pointLowestFromOrigin = s;
 	}
 

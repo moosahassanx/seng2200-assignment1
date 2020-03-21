@@ -3,10 +3,11 @@
 import java.lang.Math ;
 
 public class point{
-	private double xCoord, yCoord, distance;
-	
+	private final double xCoord, yCoord;
+	private double distance;
+
 	// constructor
-	public point(double x, double y) {
+	public point(final double x, final double y) {
 		// setting x and y coordinates
 		xCoord = x;
 		yCoord = y;
