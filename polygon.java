@@ -57,18 +57,19 @@ public class polygon{
 	// interface - gives the function names. e.g. function killBlacks() --> on file might stab them in the back, other file might shoot them in the head
 	public boolean comesBefore(polygon data){
 		// formula for difference of areas as a percentage
-		double difference = ( Math.abs(this.calculateArea() - data.calculateArea()) )  / 100;
+		double difference = ( Math.abs(this.calculateArea() - data.calculateArea()));
 		
-		if(difference <= 0.1){													// 0.1% or less difference
+		if(difference <= 0.001){													// 0.1% or less difference
 			if(this.pointLowestFromOrigin < data.pointLowestFromOrigin){
 				return true;
 			}
+			return false;
 		}else if(this.calculateArea() < data.calculateArea()){					// area of old polygon is less than new polygon area
 			return true;
-		}else{
+		}else
+		{
 			return false;
 		}
-		return false;
 	}
 
 	// take point closest to origin and set as lowest distance of the polygon
