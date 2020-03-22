@@ -1,11 +1,18 @@
+// TITLE: 					Assignment1
+// COURSE: 					SENG2200
+// AUTHOR: 					Moosa Hassan
+// STUDENT NUMBER: 			3331532 
+// DATE: 					22/03/2020 
+// DESCRIPTION: 			node class with next and previous pointers for linked list
+
 public class Node{
 	// declare private variables and objects
-	private polygon data;
+	private Polygon data;
 	private Node next, previous;
 	private int position;
 
 	// constructor
-	public Node(final polygon d) {
+	public Node(final Polygon d) {
 		// instantiate variables and objects
 		data = d;
 		next = null;
@@ -13,7 +20,7 @@ public class Node{
 	}
 
 	// mutator methods
-	public void setData(final polygon d) {
+	public void setData(final Polygon d) {
 		data = d;
 	}
 
@@ -30,7 +37,7 @@ public class Node{
 	}
 
 	// accessor methods
-	public polygon getData(){
+	public Polygon getData(){
 		return data;
 	}
 

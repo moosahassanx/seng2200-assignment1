@@ -1,21 +1,28 @@
-public class polygon{
+// TITLE: 					Assignment1
+// COURSE: 					SENG2200
+// AUTHOR: 					Moosa Hassan
+// STUDENT NUMBER: 			3331532 
+// DATE: 					22/03/2020 
+// DESCRIPTION: 			creating polygon based on position of points
+
+public class Polygon{
 	// variables and objects
-	private final point[] pointArray;
+	private final Point[] pointArray;
 	private int pointCounter;
 	private final int numOfPoints;
 	private double pointLowestFromOrigin;
 
 	// constructor
-	public polygon(final int points) {
+	public Polygon(final int points){
 		// instantiating variables and objects
-		pointArray = new point[points];
+		pointArray = new Point[points];
 		pointCounter = 0;
 		numOfPoints = points;
 		pointLowestFromOrigin = 0;
 	}
 
 	// return point as a string
-	public String toString() {
+	public String toString(){
 		// declare and instantiate string
 		String pointLine = "";
 
@@ -29,15 +36,14 @@ public class polygon{
 	}
 
 	// calculate area of polygon using points given
-	public double calculateArea() {
+	public double calculateArea(){
 		// declare and instantiate variables within method
 		double area = 0.0;
 		int j = numOfPoints - 1;
 
-		// formula given by assignment converted into code (except halving)
-		for (int i = 0; i < numOfPoints; i++) {
-			area = area
-					+ ((pointArray[j].getX() + pointArray[i].getX()) * (pointArray[j].getY() - pointArray[i].getY()));
+		// formula given by assignment converted into code (without halving)
+		for (int i = 0; i < numOfPoints; i++){
+			area = area + ((pointArray[j].getX() + pointArray[i].getX()) * (pointArray[j].getY() - pointArray[i].getY()));
 			j = i;
 		}
 
@@ -48,43 +54,38 @@ public class polygon{
 	// add point to the polygon
 	public void insertPoint(final double xInput, final double yInput) {
 		// adding array of point as a new point
-		pointArray[pointCounter] = new point(xInput, yInput);
+		pointArray[pointCounter] = new Point(xInput, yInput);
 		// test if new point is closer than previous point
 		testLowestFromOrigin(pointCounter);
 		// iterate number of points
 		pointCounter++;
 	}
 
-	// interface - gives the function names. e.g. function killBlacks() --> on file
-	// might stab them in the back, other file might shoot them in the head
-	public boolean comesBefore(final polygon data) {
+	// interface - gives the function names. e.g. function killHitler() --> on file might stab the back, other file might shoot the head
+	public boolean comesBefore(final Polygon data){
 		// formula for difference of areas as a percentage
 		final double difference = (Math.abs(this.calculateArea() - data.calculateArea()));
 
-		if (difference <= 0.001) { // 0.1% or less difference
-			if (this.pointLowestFromOrigin < data.pointLowestFromOrigin) {
+		if (difference <= 0.001){ 														// 0.1% or less difference
+			if (this.pointLowestFromOrigin < data.pointLowestFromOrigin){				// original polygon has point lower than new polygon with point close to origin
 				return true;
 			}
 			return false;
-		} else if (this.calculateArea() < data.calculateArea()) { // area of old polygon is less than new polygon area
+		} else if(this.calculateArea() < data.calculateArea()){ // area of old polygon is less than new polygon area
 			return true;
-		} else {
+		} else{
 			return false;
 		}
 	}
 
 	// take point closest to origin and set as lowest distance of the polygon
-	public void testLowestFromOrigin(final int p) {
+	public void testLowestFromOrigin(final int p){
 		// declaring and instantiating variable
 		final int q = p - 1;
 
-		if (p == 0) { // no existing points means the first point will be set as point closest to
-						// origin of polygon
+		if (p == 0){ 																				// no existing points means the first point will be set as point closest to origin of polygon
 			setLowestFromOrigin(pointArray[p].distanceFromOrigin());
-		} else if (pointArray[p].distanceFromOrigin() < pointArray[q].distanceFromOrigin()) { // comparing new point to
-																								// previous point and
-																								// set as point closest
-																								// to origin of polygon
+		} else if (pointArray[p].distanceFromOrigin() < pointArray[q].distanceFromOrigin()){ 		// comparing new point to previous point and set as point closest to origin of polygon
 			setLowestFromOrigin(pointArray[p].distanceFromOrigin());
 		}
 	}

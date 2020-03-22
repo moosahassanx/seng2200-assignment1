@@ -1,3 +1,10 @@
+// TITLE: 					Assignment1
+// COURSE: 					SENG2200
+// AUTHOR: 					Moosa Hassan
+// STUDENT NUMBER: 			3331532 
+// DATE: 					22/03/2020 
+// DESCRIPTION: 			main file used for text scanning and final display
+
 // importing java libraries (file scanner and string output)
 import java.io.*;
 import java.util.Scanner;
@@ -23,10 +30,10 @@ class PA1{
 					final int numOfPoints = file.nextInt();
 
 					// declare new polygon object and set paranthesis with number of points
-					final polygon polygonObject = new polygon(numOfPoints);
+					final Polygon polygonObject = new Polygon(numOfPoints);
 
 					// declare point array and set number of elements as number of points
-					final point[] pointArray = new point[numOfPoints];
+					final Point[] pointArray = new Point[numOfPoints];
 
 					// declare int variables and instantiate
 					int i = 1, j = 0;
@@ -36,7 +43,7 @@ class PA1{
 						final double y = file.nextDouble();
 
 						// declare point array and create new point
-						pointArray[j] = new point(x, y);
+						pointArray[j] = new Point(x, y);
 						// insert point into polygon object
 						polygonObject.insertPoint(x, y);
 						// iterate after each loop
@@ -59,8 +66,7 @@ class PA1{
 		System.out.println("Unsorted List:");
 		System.out.println(unsortedList.toString());
 
-		// create new MyPolgyons and set it as unsortedList but after insertSorted()
-		// method
+		// create new MyPolgyons and set it as unsortedList but after insertSorted() method
 		final MyPolygons sortedList = unsortedList.insertSort();
 		
 		// print sorted list
