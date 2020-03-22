@@ -4,22 +4,27 @@ public class MyPolygons
     private Node current;
     private Node sentinel;
     private int length;
-    
+    private int nodePosition;
+
     // the one with an object of polygon being passed through
-    public MyPolygons() {
+    public MyPolygons()
+    {
         // instantiate private variables
         current = null;
         sentinel = null;
         length = 0;
+        nodePosition = 0;
     }
 
     // return list of polygons as a string
-    public String toString() {
+    public String toString()
+    {
         // declare and instantiate string
         String printer = "";
 
         // loop for each node
-        for (int i = 0; i < length; i++) {
+        for (int i = 0; i < length; i++)
+        {
             // add string to polygon
             printer = printer + current.getData().toString() + "\n";
             // iterate to next node
@@ -30,21 +35,26 @@ public class MyPolygons
         return printer;
     }
 
-    public void prepend(final polygon polygonObject) {
+    public void prepend(polygon polygonObject)
+    {
         append(polygonObject);
         sentinel = sentinel.getPrevious();
         reset();
     }
 
-    public void append(final polygon polygonObject) {
-        final Node temp = new Node(polygonObject);
+    public void append(polygon polygonObject)
+    {
+        Node temp = new Node(polygonObject);
 
-        if (length == 0) {
+        if (length == 0)
+        {
             sentinel = temp;
             sentinel.setNext(sentinel);
             sentinel.setPrevious(sentinel);
             reset();
-        } else {
+        }
+        else
+        {
             temp.setNext(sentinel);
             temp.setPrevious(sentinel.getPrevious());
             sentinel.getPrevious().setNext(temp);
@@ -54,26 +64,37 @@ public class MyPolygons
         length++;
     }
 
-    public MyPolygons insertSort() { // note to self: double check prepend()
+    public MyPolygons insertSort()
+    {                                // note to self: double check prepend()
         System.out.println("Sorted List:");
 
-        final MyPolygons sortedList = new MyPolygons();
+        MyPolygons sortedList = new MyPolygons();
 
-        reset(); // set current as sentinel (first position) TOP LIST
+        reset();                // set current as sentinel (first position) TOP LIST
 
-        for (int i = 0; i < length; i++) {
+        for (int i = 0; i < length; i++)
+        {
             sortedList.reset();
-            if (sortedList.getLength() == 0) {
+            if (sortedList.getLength() == 0)
+            {
                 sortedList.append(sentinel.getData());
-            } else if (current.getData().comesBefore(sortedList.current.getData())) {
+            }
+            else if (current.getData().comesBefore(sortedList.current.getData()))
+            {
                 sortedList.prepend(current.getData());
-            } else {
+            }
+            else
+            {
                 sortedList.next();
 
-                for (int j = 1; j < sortedList.getLength(); j++) {
-                    if (current.getData().comesBefore(sortedList.getCurrent())) {
+                for (int j = 1; j < sortedList.getLength(); j++)
+                {
+                    if (current.getData().comesBefore(sortedList.getCurrent()))
+                    {
                         break;
-                    } else {
+                    }
+                    else
+                    {
                         sortedList.next();
                     }
                 }
@@ -85,20 +106,26 @@ public class MyPolygons
         return sortedList;
     }
 
-    public int getLength() {
+    public int getLength()
+    {
         return length;
     }
 
     // accessor method for position of node
-    public int getPosition(final Node n) {
+    public int getPosition(Node n)
+    {
         // create temporary node
         Node tempNode = sentinel;
 
         int i = 1;
-        while (i <= length) {
-            if (tempNode == n) { // sentinel matches the input node
+        while (i <= length)
+        {
+            if (tempNode == n)
+            {                        // sentinel matches the input node
                 return i;
-            } else {
+            }
+            else
+            {
                 // iterate to next node
                 tempNode = tempNode.getNext();
             }
@@ -107,13 +134,17 @@ public class MyPolygons
         return 1;
     }
 
-    public void insert(final polygon polygonObject) {
+    public void insert(polygon polygonObject)
+    {
         // • insert before a specified (current) item
-        if (length == 0) {
+        if (length == 0)
+        {
             append(polygonObject);
             current = sentinel;
-        } else {
-            final Node tempNode = new Node(polygonObject);
+        }
+        else
+        {
+            Node tempNode = new Node(polygonObject);
             tempNode.setPrevious(current.getPrevious());
             tempNode.setNext(current);
             current.getPrevious().setNext(tempNode);
@@ -122,16 +153,22 @@ public class MyPolygons
         }
     }
 
-    public polygon remove() { // remove from head (AKA remove from sentinel)
+    public polygon remove()
+    {            // remove from head (AKA remove from sentinel)
         // • take (then remove) an item from the head of the list
         current = sentinel.getNext();
 
-        if (length == 0) { // if there are no nodes in the linked list
+        if (length == 0)
+        {                        // if there are no nodes in the linked list
             // do nothing
-        } else if (length == 1) { // if there is 1 node in the linked list
+        }
+        else if (length == 1)
+        {                    // if there is 1 node in the linked list
             sentinel = null;
-        } else {
-            final Node temp = sentinel;
+        }
+        else
+        {
+            Node temp = sentinel;
 
             sentinel.getNext().setPrevious(sentinel.getPrevious());
             sentinel.getPrevious().setNext(sentinel.getNext());
@@ -145,13 +182,16 @@ public class MyPolygons
     }
 
     // set next node of current as current current
-    public void next() {
+    public void next()
+    {
         current = current.getNext();
     }
 
     // reset position of circular doubly linked list
-    public void reset() {
+    public void reset()
+    {
         current = sentinel;
+        nodePosition = 1;
     }
 
     // accessor methods
